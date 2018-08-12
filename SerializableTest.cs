@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using UnityEngine;
 
-public class Test : MonoBehaviour {
+public class SerializableTest : MonoBehaviour {
 	const int ITERATIONS = 100000;
 	public float f = 0.5f;
 	public string s;
