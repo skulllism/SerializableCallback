@@ -8,13 +8,12 @@ public class SerializableTest : MonoBehaviour {
 	public string s;
 	public System.Func<float, bool> RegularDelegate;
 	public System.Func<float, bool> DynamicDelegate;
-	public Condition condition;
+	public ConditionArgString condition;
 	public SerializableEvent ev;
 
 	void Start() {
 		RegularDelegate = TestMethod;
 		DynamicDelegate = (System.Func<float, bool>) System.Delegate.CreateDelegate(typeof(System.Func<float, bool>), this, "TestMethod");
-		condition.Invoke(f);
 	}
 
 	void Update() {
@@ -42,7 +41,6 @@ public class SerializableTest : MonoBehaviour {
 		var serializedDelegate = Stopwatch.StartNew();
 		bool serializedDelegateb = false;
 		for (int i = 0; i < ITERATIONS; ++i) {
-			serializedDelegateb = condition.Invoke(f);
 		}
 		serializedDelegate.Stop();
 
@@ -75,6 +73,3 @@ public class SerializableTest : MonoBehaviour {
 		s = a;
 	}
 }
-
-[Serializable]
-public class Condition : SerializableCallback<float, bool> { }
