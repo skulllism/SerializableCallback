@@ -87,7 +87,10 @@ public class SerializableCallbackDrawer : PropertyDrawer {
 						case Arg.ArgType.Object:
 						EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("objectValue"), argLabel);
 						break;
-					}
+                        case Arg.ArgType.GameObject:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("gameObjectValue"), argLabel);
+                            break;
+                    }
 					if (EditorGUI.EndChangeCheck()) {
 						property.FindPropertyRelative("dirty").boolValue = true;
 					}
