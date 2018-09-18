@@ -107,7 +107,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject }
 	public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -115,6 +115,7 @@ public struct Arg {
 	public Object objectValue;
 	public ArgType argType;
     public GameObject gameObjectValue;
+    public ScriptableObject scriptableObjectValue;
 
 	public object GetValue() {
 		return GetValue(argType);
@@ -134,6 +135,8 @@ public struct Arg {
 				return objectValue;
             case ArgType.GameObject:
                 return gameObjectValue;
+            case ArgType.ScriptableObject:
+                return scriptableObjectValue;
             default:
 				return null;
 		}
@@ -153,6 +156,8 @@ public struct Arg {
 				return typeof(Object);
             case ArgType.GameObject:
                 return typeof(GameObject);
+            case ArgType.ScriptableObject:
+                return typeof(ScriptableObject);
             default:
 				return null;
 		}
@@ -165,6 +170,7 @@ public struct Arg {
 		else if (type == typeof(String)) return ArgType.String;
 		else if (type == typeof(Object)) return ArgType.Object;
         else if (type == typeof(GameObject)) return ArgType.GameObject;
+        else if (type == typeof(ScriptableObject)) return ArgType.ScriptableObject;
         else return ArgType.Unsupported;
 	}
 
