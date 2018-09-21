@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using TriggerData = AdvancedUnityPlugin.Trigger2DEventBroadcaster.TriggerData;
 
 public abstract class SerializableCallbackBase<TReturn> : SerializableCallbackBase {
 	public InvokableCallbackBase<TReturn> func;
@@ -107,7 +108,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, TriggerData }
 	public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -116,6 +117,7 @@ public struct Arg {
 	public ArgType argType;
     public GameObject gameObjectValue;
     public ScriptableObject scriptableObjectValue;
+    public TriggerData triggerDataValue;
 
 	public object GetValue() {
 		return GetValue(argType);
@@ -137,6 +139,9 @@ public struct Arg {
                 return gameObjectValue;
             case ArgType.ScriptableObject:
                 return scriptableObjectValue;
+            case ArgType.TriggerData:
+                return triggerDataValue;
+
             default:
 				return null;
 		}
@@ -158,6 +163,8 @@ public struct Arg {
                 return typeof(GameObject);
             case ArgType.ScriptableObject:
                 return typeof(ScriptableObject);
+            case ArgType.TriggerData:
+                return typeof(TriggerData);
             default:
 				return null;
 		}
@@ -171,6 +178,7 @@ public struct Arg {
 		else if (type == typeof(Object)) return ArgType.Object;
         else if (type == typeof(GameObject)) return ArgType.GameObject;
         else if (type == typeof(ScriptableObject)) return ArgType.ScriptableObject;
+        else if (type == typeof(TriggerData)) return ArgType.TriggerData;
         else return ArgType.Unsupported;
 	}
 

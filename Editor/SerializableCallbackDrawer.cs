@@ -93,6 +93,9 @@ public class SerializableCallbackDrawer : PropertyDrawer {
                         case Arg.ArgType.ScriptableObject:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("scriptableObjectValue"), argLabel);
                             break;
+                        case Arg.ArgType.TriggerData:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("triggerDataValue"), argLabel);
+                            break;
                     }
 					if (EditorGUI.EndChangeCheck()) {
 						property.FindPropertyRelative("dirty").boolValue = true;
