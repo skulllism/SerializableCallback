@@ -105,7 +105,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsVariable, StringVariable }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsVariable, StringVariable, FloatVariable }
     public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -116,8 +116,9 @@ public struct Arg {
     public StringVariable stringVariableValue;
     public ScriptableObject scriptableObjectValue;
     public KeyValuePairsVariable keyValuePairsVariableValue;
+    public FloatVariable floatVariable;
 
-	public object GetValue() {
+    public object GetValue() {
 		return GetValue(argType);
 	}
 
@@ -141,6 +142,8 @@ public struct Arg {
                 return scriptableObjectValue;
             case ArgType.KeyValuePairsVariable:
                 return keyValuePairsVariableValue;
+            case ArgType.FloatVariable:
+                return floatVariable;
             default:
 				return null;
 		}
@@ -166,6 +169,8 @@ public struct Arg {
                 return typeof(ScriptableObject);
             case ArgType.KeyValuePairsVariable:
                 return typeof(KeyValuePairsVariable);
+            case ArgType.FloatVariable:
+                return typeof(FloatVariable);
             default:
 				return null;
 		}
@@ -181,6 +186,7 @@ public struct Arg {
         else if (type == typeof(StringVariable)) return ArgType.StringVariable;
         else if (type == typeof(ScriptableObject)) return ArgType.ScriptableObject;
         else if (type == typeof(KeyValuePairsVariable)) return ArgType.KeyValuePairsVariable;
+        else if (type == typeof(FloatVariable)) return ArgType.FloatVariable;
         else return ArgType.Unsupported;
 	}
 
