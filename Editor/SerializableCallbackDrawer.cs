@@ -96,6 +96,9 @@ public class SerializableCallbackDrawer : PropertyDrawer {
                         case Arg.ArgType.KeyValuePairsVariable:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuePairsVariableValue"), argLabel);
                             break;
+                        case Arg.ArgType.KeyValuesPairVariable:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuesPairVariableValue"), argLabel);
+                            break;
                     }
 					if (EditorGUI.EndChangeCheck()) {
 						property.FindPropertyRelative("dirty").boolValue = true;
