@@ -105,7 +105,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsVariable, StringVariable, FloatVariable, KeyValuesPairVariable }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsVariable, StringVariable, FloatVariable, KeyValuesPairVariable, KeyValuesPairsVariable }
     public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -118,6 +118,7 @@ public struct Arg {
     public KeyValuePairsVariable keyValuePairsVariableValue;
     public FloatVariable floatVariable;
     public KeyValuesPairVariable keyValuesPairVariableValue;
+    public KeyValuesPairsVariable keyValuesPairsVariableValue;
 
     public object GetValue() {
 		return GetValue(argType);
@@ -147,6 +148,8 @@ public struct Arg {
                 return floatVariable;
             case ArgType.KeyValuesPairVariable:
                 return keyValuesPairVariableValue;
+            case ArgType.KeyValuesPairsVariable:
+                return keyValuesPairsVariableValue;
             default:
 				return null;
 		}
@@ -176,6 +179,8 @@ public struct Arg {
                 return typeof(FloatVariable);
             case ArgType.KeyValuesPairVariable:
                 return typeof(KeyValuesPairVariable);
+            case ArgType.KeyValuesPairsVariable:
+                return typeof(KeyValuesPairsVariable);
             default:
 				return null;
 		}
@@ -193,6 +198,7 @@ public struct Arg {
         else if (type == typeof(KeyValuePairsVariable)) return ArgType.KeyValuePairsVariable;
         else if (type == typeof(FloatVariable)) return ArgType.FloatVariable;
         else if (type == typeof(KeyValuesPairVariable)) return ArgType.KeyValuesPairVariable;
+        else if (type == typeof(KeyValuesPairsVariable)) return ArgType.KeyValuesPairsVariable;
         else return ArgType.Unsupported;
 	}
 
