@@ -105,7 +105,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsVariable, StringVariable, FloatVariable, KeyValuesPairVariable, KeyValuesPairsVariable }
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsArrayVariable, StringVariable, FloatVariable}
     public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -115,10 +115,8 @@ public struct Arg {
     public GameObject gameObjectValue;
     public StringVariable stringVariableValue;
     public ScriptableObject scriptableObjectValue;
-    public KeyValuePairsVariable keyValuePairsVariableValue;
+    public KeyValuePairsArrayVariable keyValuePairsArrayVariable;
     public FloatVariable floatVariable;
-    public KeyValuesPairVariable keyValuesPairVariableValue;
-    public KeyValuesPairsVariable keyValuesPairsVariableValue;
 
     public object GetValue() {
 		return GetValue(argType);
@@ -142,14 +140,10 @@ public struct Arg {
                 return stringVariableValue;
             case ArgType.ScriptableObject:
                 return scriptableObjectValue;
-            case ArgType.KeyValuePairsVariable:
-                return keyValuePairsVariableValue;
+            case ArgType.KeyValuePairsArrayVariable:
+                return keyValuePairsArrayVariable;
             case ArgType.FloatVariable:
                 return floatVariable;
-            case ArgType.KeyValuesPairVariable:
-                return keyValuesPairVariableValue;
-            case ArgType.KeyValuesPairsVariable:
-                return keyValuesPairsVariableValue;
             default:
 				return null;
 		}
@@ -173,14 +167,10 @@ public struct Arg {
                 return typeof(StringVariable);
             case ArgType.ScriptableObject:
                 return typeof(ScriptableObject);
-            case ArgType.KeyValuePairsVariable:
-                return typeof(KeyValuePairsVariable);
+            case ArgType.KeyValuePairsArrayVariable:
+                return typeof(KeyValuePairsArrayVariable);
             case ArgType.FloatVariable:
                 return typeof(FloatVariable);
-            case ArgType.KeyValuesPairVariable:
-                return typeof(KeyValuesPairVariable);
-            case ArgType.KeyValuesPairsVariable:
-                return typeof(KeyValuesPairsVariable);
             default:
 				return null;
 		}
@@ -195,10 +185,8 @@ public struct Arg {
         else if (type == typeof(GameObject)) return ArgType.GameObject;
         else if (type == typeof(StringVariable)) return ArgType.StringVariable;
         else if (type == typeof(ScriptableObject)) return ArgType.ScriptableObject;
-        else if (type == typeof(KeyValuePairsVariable)) return ArgType.KeyValuePairsVariable;
+        else if (type == typeof(KeyValuePairsArrayVariable)) return ArgType.KeyValuePairsArrayVariable;
         else if (type == typeof(FloatVariable)) return ArgType.FloatVariable;
-        else if (type == typeof(KeyValuesPairVariable)) return ArgType.KeyValuesPairVariable;
-        else if (type == typeof(KeyValuesPairsVariable)) return ArgType.KeyValuesPairsVariable;
         else return ArgType.Unsupported;
 	}
 
