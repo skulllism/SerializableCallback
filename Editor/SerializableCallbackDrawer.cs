@@ -96,17 +96,11 @@ public class SerializableCallbackDrawer : PropertyDrawer {
                         case Arg.ArgType.StringVariable:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("stringVariableValue"), argLabel);
                             break;
-                        case Arg.ArgType.KeyValuePairsVariable:
-                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuePairsVariableValue"), argLabel);
+                        case Arg.ArgType.KeyValuePairsArrayVariable:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuePairsArrayVariable"), argLabel);
                             break;
                         case Arg.ArgType.FloatVariable:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("floatVariable"), argLabel);
-                            break;
-                        case Arg.ArgType.KeyValuesPairVariable:
-                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuesPairVariableValue"), argLabel);
-                            break;
-                        case Arg.ArgType.KeyValuesPairsVariable:
-                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("keyValuesPairsVariableValue"), argLabel);
                             break;
                     }
 					if (EditorGUI.EndChangeCheck()) {
