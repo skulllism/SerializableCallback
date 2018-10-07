@@ -102,6 +102,9 @@ public class SerializableCallbackDrawer : PropertyDrawer {
                         case Arg.ArgType.FloatVariable:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("floatVariable"), argLabel);
                             break;
+                        case Arg.ArgType.InputKey:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("inputKeyVariable"), argLabel);
+                            break;
                     }
 					if (EditorGUI.EndChangeCheck()) {
 						property.FindPropertyRelative("dirty").boolValue = true;
