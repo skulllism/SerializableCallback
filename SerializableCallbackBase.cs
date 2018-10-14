@@ -105,7 +105,7 @@ public abstract class SerializableCallbackBase : ISerializationCallbackReceiver 
 
 [System.Serializable]
 public struct Arg {
-	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsArrayVariable, StringVariable, FloatVariable , InputKey}
+	public enum ArgType { Unsupported, Bool, Int, Float, String, Object, GameObject, ScriptableObject, KeyValuePairsArrayVariable, StringVariable, FloatVariable , InputKey, AnimationClip }
     public bool boolValue;
 	public int intValue;
 	public float floatValue;
@@ -118,6 +118,7 @@ public struct Arg {
     public KeyValuePairsArrayVariable keyValuePairsArrayVariable;
     public FloatVariable floatVariable;
     public AdvancedUnityPlugin.Input.Key inputKeyVariable;
+    public AnimationClip clipVariable;
 
     public object GetValue() {
 		return GetValue(argType);
@@ -147,6 +148,8 @@ public struct Arg {
                 return floatVariable;
             case ArgType.InputKey:
                 return inputKeyVariable;
+            case ArgType.AnimationClip:
+                return clipVariable;
             default:
 				return null;
 		}
@@ -176,6 +179,8 @@ public struct Arg {
                 return typeof(FloatVariable);
             case ArgType.InputKey:
                 return typeof(AdvancedUnityPlugin.Input.Key);
+            case ArgType.AnimationClip:
+                return typeof(AnimationClip);
             default:
 				return null;
 		}
@@ -193,6 +198,7 @@ public struct Arg {
         else if (type == typeof(KeyValuePairsArrayVariable)) return ArgType.KeyValuePairsArrayVariable;
         else if (type == typeof(FloatVariable)) return ArgType.FloatVariable;
         else if (type == typeof(AdvancedUnityPlugin.Input.Key)) return ArgType.InputKey;
+        else if (type == typeof(AnimationClip)) return ArgType.AnimationClip;
         else return ArgType.Unsupported;
 	}
 

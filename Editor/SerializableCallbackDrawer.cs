@@ -105,6 +105,9 @@ public class SerializableCallbackDrawer : PropertyDrawer {
                         case Arg.ArgType.InputKey:
                             EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("inputKeyVariable"), argLabel);
                             break;
+                        case Arg.ArgType.AnimationClip:
+                            EditorGUI.PropertyField(argRect, argProp.FindPropertyRelative("clipVariable"), argLabel);
+                            break;
                     }
 					if (EditorGUI.EndChangeCheck()) {
 						property.FindPropertyRelative("dirty").boolValue = true;
