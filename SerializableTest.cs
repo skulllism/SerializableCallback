@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using UnityEngine;
+using AdvancedUnityPlugin;
 
 public class SerializableTest : MonoBehaviour {
 	const int ITERATIONS = 100000;
